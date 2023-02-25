@@ -7,6 +7,9 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,6 +22,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+    
+    private EditText inputEditText1;
+    private EditText inputEditText2;
+    private EditText inputEditText3;
+    private EditText inputEditText4;
+    private EditText inputEditText5;
+    private Button submitButton;
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
@@ -36,13 +46,33 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        inputEditText1 = findViewById(R.id.editTextTextPersonName);
+        inputEditText2 = findViewById(R.id.editTextTextPersonName2);
+        inputEditText3 = findViewById(R.id.editTextTextPersonName3);
+        inputEditText4 = findViewById(R.id.editTextTextPersonName4);
+        inputEditText5 = findViewById(R.id.editTextTextPersonName5);
+        submitButton = findViewById(R.id.button);
+        
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                String userInput1 = inputEditText1.getText().toString().trim();
+                String userInput2 = inputEditText2.getText().toString().trim();
+                String userInput3 = inputEditText3.getText().toString().trim();
+                String userInput4 = inputEditText4.getText().toString().trim();
+                String userInput5 = inputEditText5.getText().toString().trim();
+
+                // Save the user's input here
+                saveUserInput(userInput1, userInput2, userInput3, userInput4, userInput5);
+
+                // Display a confirmation message
+                Toast.makeText(MainActivity.this, "Data saved", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    
+    private void saveUserInput(String userInput1, String userInput2, String userInput3, String userInput4, String userInput5) {
+    //will need to use this method to store in database
     }
 
     @Override
